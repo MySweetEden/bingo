@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
 import styles from './page.module.css'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Box, Button, Grid } from '@mui/material'
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
     "パトカー": false,
     "軽トラ": false,
     "４階建ての家": false,
-    "コンビニ３社全て": false,
+    "折り畳み傘": false,
     "テント": false,
     "銭湯": false,
     "黄色い車": false,
@@ -71,9 +71,9 @@ export default function Home() {
       <Box marginTop="5vh" />
       <Grid container columns={24} spacing={0}>
         {Object.entries(squares).map(([content, pushed], index)=>(
-          <>
+          <React.Fragment key={content}>
             {index % 5 === 0 && <Grid item xs={2} md={7} key={content+"LeftSpace"} />}
-            <Grid item xs={4} md={2}>
+            <Grid item xs={4} md={2} key={content+"Grid"}>
               <Button  className={styles.button}
                 onClick={()=>{handleButtonClick(content)}}
                 variant={pushed ? "outlined" : "contained"} key={content+"Button"}>
@@ -83,7 +83,7 @@ export default function Home() {
               </Button>
             </Grid>
             {index % 5 === 4 && <Grid item xs={2} md={7} key={content+"RightSpace"} />}
-          </>
+          </React.Fragment>
         ))}
       </Grid>
       <Box marginTop="5vh" />
